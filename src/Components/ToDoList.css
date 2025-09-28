@@ -1,0 +1,19 @@
+body {
+    color: yellow;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* centers vertically */
+  align-items: center;      /* centers horizontally */
+  height: 100vh;            /* full height of screen */
+  width: 100%;              /* full width */
+  text-align: center;       /* makes text center */
+}
+
+.title {
+  color: blue;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}

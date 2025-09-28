@@ -1,12 +1,14 @@
 import React from 'react';
-import './Components/ToDoList.css';
+import ToDoList from './Components/ToDoList';  // ✅ Import the component
+
+
 
 function App() {
   return (
     <div>
-      <ToDoList />
+      <ToDoList/>
     </div>
   );
 }
 
-export default App;  // ✅ export App, not ToDoList
+export default App;  // ✅ Correct export
