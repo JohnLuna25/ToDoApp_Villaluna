@@ -1,71 +1,147 @@
-body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;         /* full screen height */
+/* reset + safety */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; padding: 0; }
+
+/* full-screen wrapper that forces dead center */
+.app-wrapper {
+  position: fixed;   /* independent of parent layout */
+  inset: 0;          /* top:0; right:0; bottom:0; left:0; */
   display: flex;
-  justify-content: center;  /* center horizontally */
-  align-items: center;      /* center vertically */
-  background: #f4f4f4;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  background: #f4f4f6;
+  padding: 20px;
+  z-index: 1000;
 }
 
+/* centered main card */
 .todo-container {
-  text-align: center;       /* center inside text/elements */
+  width: min(1000px, 96%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* top centered block (title + input) */
+.center-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 42px; /* space between top center and boxes */
 }
 
 .title {
-  color: blue;
-  font-size: 2rem;
-  margin-bottom: 20px;
+  margin: 0 0 12px 0;
+  font-size: 1.9rem;
+  color: #222;
 }
 
-/* Remove bullets */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-/* Align text and button side by side with space */
-.todo-item {
+/* add heading row */
+.add-heading {
   display: flex;
-  justify-content: space-between;
+  gap: 12px;
   align-items: center;
-  margin-bottom: 10px;   /* space between items */
 }
 
-/* Optional: add spacing to the delete button */
-.delete-button-heading {
-  margin-left: 20px;
-  background-color: #ff1a1a ;
-  color: white;
+.add-heading input {
+  width: 300px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.add-todo-button {
+  padding: 10px 16px;
+  border-radius: 10px;
   border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
+  background: #007bff;
+  color: white;
+  font-weight: 600;
   cursor: pointer;
 }
+.add-todo-button:hover { background: #0056b3; }
 
-.delete-button-heading:hover {
-  background-color: darkred; /* color changes on hover */
+/* grid/row for the boxes under the centered top */
+.todo-grid {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;    /* wrap only if screen is too small */
+  align-items: flex-start;
 }
 
+/* individual todo card */
+.todo-box {
+  width: 240px;
+  min-height: 120px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  text-align: left;
+}
 
-.todo-card {
+/* header row: heading + delete on same line */
+.todo-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 80px; /* ⬅️ adds extra space between items */
-  padding: 8px 0;
+  margin-bottom: 10px;
 }
 
-.heading_todo h3 {
-  margin: 100px;
-}
-
-input {
-  padding: 8px;
-  margin-right: 8px;
-}
-
-button {
-  padding: 8px 12px;
+.delete-button-heading {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 8px;
   cursor: pointer;
+}
+.delete-button-heading:hover { background: #b02a37; }
+
+/* inner list */
+.inner-list { list-style: disc; margin: 0 0 12px 18px; padding: 0; }
+.todo_inside_list { margin-bottom: 6px; }
+
+/* add-list row: input left, button right on same line */
+.add-list {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: nowrap;      /* prevent wrapping */
+  width: 100%;
+}
+
+.list-input {
+  flex: 1 1 auto;         /* grow and shrink */
+  min-width: 0;           /* important so input can shrink in flexbox */
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  overflow: hidden;
+}
+
+.add-list-button {
+  flex: 0 0 auto;         /* do not grow/shrink */
+  white-space: nowrap;    /* keep "Add List" as single line */
+  padding: 8px 14px;
+  min-width: 96px;        /* ensures full label fits */
+  border-radius: 8px;
+  border: none;
+  background: #28a745;
+  color: white;
+  cursor: pointer;
+}
+.add-list-button:hover { background: #1e7e34; }
+
+/* responsiveness */
+@media (max-width: 600px) {
+  .add-heading input { width: 180px; }
+  .todo-box { width: 200px; }
+  .add-list-button { min-width: 76px; padding: 7px 10px; font-size: 0.95rem; }
 }
