@@ -57,5 +57,15 @@ ul {
 }
 
 .heading_todo h3 {
-  margin: 100;
+  margin: 100px;
+}
+
+input {
+  padding: 8px;
+  margin-right: 8px;
+}
+
+button {
+  padding: 8px 12px;
+  cursor: pointer;
 }
