@@ -1,20 +1,17 @@
-/* reset + safety */
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; margin: 0; padding: 0; }
 
-/* full-screen wrapper that forces dead center */
 .app-wrapper {
-  position: fixed;   /* independent of parent layout */
-  inset: 0;          /* top:0; right:0; bottom:0; left:0; */
+  position: fixed;
+  inset: 0;
   display: flex;
-  justify-content: center; /* center horizontally */
-  align-items: center;     /* center vertically */
+  justify-content: center;
+  align-items: center;
   background: #f4f4f6;
   padding: 20px;
   z-index: 1000;
 }
 
-/* centered main card */
 .todo-container {
   width: min(1000px, 96%);
   max-height: 90vh;
@@ -25,21 +22,19 @@ html, body, #root { height: 100%; margin: 0; padding: 0; }
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* top centered block (title + input) */
 .center-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 42px; /* space between top center and boxes */
+  margin-bottom: 42px;
 }
 
 .title {
-  margin: 0 0 12px 0;
+  margin: 0 0 18px 0;
   font-size: 1.9rem;
   color: #222;
 }
 
-/* add heading row */
 .add-heading {
   display: flex;
   gap: 12px;
@@ -63,18 +58,19 @@ html, body, #root { height: 100%; margin: 0; padding: 0; }
   font-weight: 600;
   cursor: pointer;
 }
-.add-todo-button:hover { background: #0056b3; }
 
-/* grid/row for the boxes under the centered top */
+.add-todo-button:hover {
+  background: #0056b3;
+}
+
 .todo-grid {
   display: flex;
   justify-content: center;
   gap: 24px;
-  flex-wrap: wrap;    /* wrap only if screen is too small */
+  flex-wrap: wrap;
   align-items: flex-start;
 }
 
-/* individual todo card */
 .todo-box {
   width: 240px;
   min-height: 120px;
@@ -83,14 +79,22 @@ html, body, #root { height: 100%; margin: 0; padding: 0; }
   padding: 14px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.06);
   text-align: left;
+  border: 1px solid #e7eef6;
+  border-left: 6px solid #007bff;
 }
 
-/* header row: heading + delete on same line */
+.todo-box:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
 .todo-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  gap: 8px;
 }
 
 .delete-button-heading {
@@ -101,24 +105,40 @@ html, body, #root { height: 100%; margin: 0; padding: 0; }
   border-radius: 8px;
   cursor: pointer;
 }
-.delete-button-heading:hover { background: #b02a37; }
 
-/* inner list */
-.inner-list { list-style: disc; margin: 0 0 12px 18px; padding: 0; }
-.todo_inside_list { margin-bottom: 6px; }
+.delete-button-heading:hover {
+  background: #b02a37;
+}
 
-/* add-list row: input left, button right on same line */
+.inner-list {
+  list-style: disc;
+  margin: 0 0 12px 18px;
+  padding: 0;
+}
+
+.todo_inside_list {
+  margin-bottom: 6px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f3f7fb;
+}
+
+.todo_inside_list:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 .add-list {
   display: flex;
   gap: 8px;
   align-items: center;
-  flex-wrap: nowrap;      /* prevent wrapping */
+  flex-wrap: nowrap;
   width: 100%;
 }
 
 .list-input {
-  flex: 1 1 auto;         /* grow and shrink */
-  min-width: 0;           /* important so input can shrink in flexbox */
+  flex: 1 1 auto;
+  min-width: 0;
   padding: 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -127,21 +147,23 @@ html, body, #root { height: 100%; margin: 0; padding: 0; }
 }
 
 .add-list-button {
-  flex: 0 0 auto;         /* do not grow/shrink */
-  white-space: nowrap;    /* keep "Add List" as single line */
+  flex: 0 0 auto;
+  white-space: nowrap;
   padding: 8px 14px;
-  min-width: 96px;        /* ensures full label fits */
+  min-width: 96px;
   border-radius: 8px;
   border: none;
   background: #28a745;
   color: white;
   cursor: pointer;
 }
-.add-list-button:hover { background: #1e7e34; }
 
-/* responsiveness */
-@media (max-width: 600px) {
-  .add-heading input { width: 180px; }
+.add-list-button:hover {
+  background: #1e7e34;
+}
+
+@media (max-width: 720px) {
+  .add-heading input { width: 200px; }
   .todo-box { width: 200px; }
   .add-list-button { min-width: 76px; padding: 7px 10px; font-size: 0.95rem; }
 }

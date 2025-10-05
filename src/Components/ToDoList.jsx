@@ -15,7 +15,6 @@ export default function ToDoList() {
 
   const handleDeleteTodo = (index) => {
     setTodos(prev => prev.filter((_, i) => i !== index));
-    // remove corresponding list input entry to keep state clean
     setListInputs(prev => {
       const copy = { ...prev };
       delete copy[index];
